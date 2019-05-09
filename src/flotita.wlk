@@ -1,7 +1,7 @@
 
 
 class Corsa {
-	var property color 
+	var property color = "plateado"
 	
 	method capacidad() {return 4}
 	method velocidadMaxima () {return 150}
@@ -24,11 +24,11 @@ class Kwid {
 
 object trafic {
 
-	var peso
-	var capacidad
+	var peso = 1000
+	var capacidad = 12
 
-	var pesoM
-	var velocidad
+	var pesoM = 800
+	var velocidad = 130
 	
 	
 	method interiorComodo () {capacidad = 5 peso = 700 }
@@ -42,20 +42,23 @@ object trafic {
 	method peso () {return pesoM + peso + 4000}
 	
 	method color () { return "blanco"}
+	
 }
 
 class Dependencia {
 	
 	var property empleados = 0
-	var flota = []
+	var property  flota = []
 	
 	method agregarAFlota (rodado) {flota.add (rodado)}
 	method quitarDeFlota (rodado) {flota.remove (rodado)}
 	
 	method pesoTotalFlota () {return flota.sum ({n => n.peso() })}
 
-	method estaBienEquipado () {return flota.size () >= 3 and flota.all ({n => n.velocidadMaxima() > 100 }) }
-	method capadidadTotalEnColor (color) {return flota.}
-	
+	method estaBienEquipado () {return flota.size () >= 3 and flota.all ({n => n.velocidadMaxima() >= 100 }) }
+	method capadidadTotalEnColor (color) {return flota.filter({n=>n.color() == color}).sum ({n =>n.capacidad()}) }
+	method colorDelRodadoMasRapido () {return flota.max ({n => n.velocidadMaxima()}).color()}
+	method capacidadFaltante () {return empleados - flota.sum ({n => n.capacidad()})}
+//	method esGrande() {return }
 	
 }
